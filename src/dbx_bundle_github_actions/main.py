@@ -13,11 +13,15 @@ def get_spark() -> SparkSession:
     try:
         from databricks.connect import DatabricksSession
 
-        # Configurar para usar o modo serverless
+        # Usar o ID do cluster fornecido como variável de ambiente
+        cluster_id = os.environ.get("DATABRICKS_CLUSTER_ID")
+        
+        # Configurar a sessão com o ID do cluster
         return DatabricksSession.builder.remote(
             host=os.environ.get("DATABRICKS_HOST"),
-            token=os.environ.get("DATABRICKS_TOKEN")
-        ).config("spark.databricks.service.serverless.compute.id", "auto").getOrCreate()
+            token=os.environ.get("DATABRICKS_TOKEN"),
+            cluster_id=cluster_id
+        ).getOrCreate()
     except ImportError:
         return SparkSession.builder.getOrCreate()
 
