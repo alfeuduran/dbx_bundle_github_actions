@@ -1,0 +1,31 @@
+# This is a Databricks asset bundle definition for dbx_bundle_github_actions.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: dbx_bundle_github_actions
+  uuid: 49b6dda6-5cb0-432b-9066-b19879cfb3ac
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-8876629969026717.17.azuredatabricks.net
+
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-8876629969026717.17.azuredatabricks.net
+      # We explicitly specify /Workspace/Users/alfeu.duran@databricks.com to make sure we only have a single copy.
+      root_path: /Workspace/Users/alfeu.duran@databricks.com/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: alfeu.duran@databricks.com
+        level: CAN_MANAGE
+    run_as:
+      user_name: alfeu.duran@databricks.com

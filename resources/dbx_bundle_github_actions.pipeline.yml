@@ -1,0 +1,14 @@
+# The main pipeline for dbx_bundle_github_actions
+resources:
+  pipelines:
+    dbx_bundle_github_actions_pipeline:
+      name: dbx_bundle_github_actions_pipeline
+      ## Specify the 'catalog' field to configure this pipeline to make use of Unity Catalog:
+      # catalog: catalog_name
+      target: dbx_bundle_github_actions_${bundle.target}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src
