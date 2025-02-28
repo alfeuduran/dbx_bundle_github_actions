@@ -23,7 +23,7 @@ targets:
     workspace:
       host: https://adb-3457621802558823.3.azuredatabricks.net/
       # Definir um caminho específico para o ambiente de QA
-      root_path: /Workspace/Shared/qa/${bundle.name}
+      root_path: ~/Workspace/Shared/qa/${bundle.name}
     permissions:
       - user_name: alfeu.duran@databricks.com
         level: CAN_MANAGE
