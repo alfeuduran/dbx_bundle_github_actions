@@ -74,6 +74,7 @@ jobs:
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+          DATABRICKS_SERVERLESS_COMPUTE_ID: "auto"
           
   validate_databricks_bundle:
     name: Validate Databricks Bundle

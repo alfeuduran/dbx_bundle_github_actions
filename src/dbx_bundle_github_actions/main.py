@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession, DataFrame
+import os
 
 
 def get_taxis(spark: SparkSession) -> DataFrame:
@@ -12,7 +13,12 @@ def get_spark() -> SparkSession:
     try:
         from databricks.connect import DatabricksSession
 
-        return DatabricksSession.builder.getOrCreate()
+        # Configurar para usar o modo serverless
+        return DatabricksSession.builder.remote(
+            host=os.environ.get("DATABRICKS_HOST"),
+            token=os.environ.get("DATABRICKS_TOKEN"),
+            serverless_compute_id="auto"  # Usar modo serverless
+        ).getOrCreate()
     except ImportError:
         return SparkSession.builder.getOrCreate()
 
