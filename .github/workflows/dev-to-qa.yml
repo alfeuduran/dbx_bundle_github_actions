@@ -46,6 +46,8 @@ jobs:
         run: |
           echo "Instalando o CLI do Databricks..."
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+          # Instalar o pacote wheel necessário para construir o artefato Python
+          pip install wheel
           # Verificar se o CLI foi instalado corretamente
           which databricks
 
@@ -93,6 +95,8 @@ jobs:
         run: |
           echo "Instalando o CLI do Databricks..."
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+          # Instalar o pacote wheel necessário para construir o artefato Python
+          pip install wheel
           # Verificar se o CLI foi instalado corretamente
           which databricks
 
@@ -107,5 +111,6 @@ jobs:
         run: |
           databricks bundle deploy -t qa
         env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_QA_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_QA_TOKEN }}
           DATABRICKS_QA_HOST: ${{ secrets.DATABRICKS_QA_HOST }} 
