@@ -15,7 +15,6 @@ sys.path.append("./src")
 import datetime
 import dbx_bundle_github_actions
 
-# adding XPTO
 
 local_version = datetime.datetime.utcnow().strftime("%Y%m%d.%H%M%S")
 
