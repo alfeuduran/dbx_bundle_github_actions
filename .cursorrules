@@ -1,0 +1,24 @@
+---
+description: "Guidelines for branching, CI/CD, and best practices for Databricks (Asset Bundles) projects with GitHub Actions"
+globs: "*"
+---
+
+1. **Branching Strategy**  
+   - Maintain three main branches: `dev`, `qa`, and `prd`.  
+   - Pull Requests from `dev` to `qa` should trigger unit tests and integration tests.  
+   - Pull Requests from `qa` to `prd` should trigger final validation steps.
+
+2. **CI/CD Pipeline**  
+   - Implement automated unit tests to validate the structure of DataFrames when opening a PR to `qa`.  
+   - Include integration tests to ensure compatibility between components.  
+   - Configure automated deployments to `prd` (using Databricks Asset Bundles) with an optional manual review step before release.
+
+3. **Best Practices**  
+   - Use version control and dependency management to ensure reproducibility.  
+   - Employ static code analysis (linters for Python/Scala/SQL) to maintain code quality.  
+   - Emphasize security by reviewing permissions and scanning dependencies for vulnerabilities.  
+   - Follow consistent code standards and naming conventions to simplify maintenance.
+
+4. **GitHub Actions Automation**  
+   - Create well-defined GitHub Actions workflows for each stage (tests, deployments, reviews).  
+   - Set clear triggers to enable efficient automation.
