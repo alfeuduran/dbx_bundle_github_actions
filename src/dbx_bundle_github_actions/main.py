@@ -16,9 +16,8 @@ def get_spark() -> SparkSession:
         # Configurar para usar o modo serverless
         return DatabricksSession.builder.remote(
             host=os.environ.get("DATABRICKS_HOST"),
-            token=os.environ.get("DATABRICKS_TOKEN"),
-            serverless_compute_id="auto"  # Usar modo serverless
-        ).getOrCreate()
+            token=os.environ.get("DATABRICKS_TOKEN")
+        ).config("spark.databricks.service.serverless.compute.id", "auto").getOrCreate()
     except ImportError:
         return SparkSession.builder.getOrCreate()
 
