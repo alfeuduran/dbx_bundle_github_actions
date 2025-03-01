@@ -27,3 +27,10 @@ wheel
 ## for this project.
 #
 # databricks-connect>=15.4,<15.5
+
+# Core dependencies for Databricks Asset Bundle deployment
+databricks-cli>=0.18.0
+
+# Testing and validation
+pytest>=7.0.0
+pytest-cov>=2.0.0

@@ -1,8 +1,13 @@
-.databricks/
-build/
-dist/
+# Databricks
+.databricks
+.dbx
+
+# Python
 __pycache__/
-*.egg-info
-.venv/
-scratch/**
-!scratch/README.md
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
