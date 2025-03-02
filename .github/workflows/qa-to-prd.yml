@@ -43,7 +43,7 @@ jobs:
           
       - name: Validate bundle format
         run: |
-          databricks bundle validate
+          databricks bundle validate --target prd
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }} 
