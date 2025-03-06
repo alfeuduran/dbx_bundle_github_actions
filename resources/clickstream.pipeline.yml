@@ -1,0 +1,17 @@
+resources:
+  pipelines:
+    clickstream:
+      name: Clickstream
+      clusters:
+        - num_workers: 1
+          label: default
+      configuration:
+        "topic": "${var.kafka_topic}"
+      libraries:
+        - notebook:
+            path: ../src/02a - DLT - Reading Kafka (SQL).sql
+      catalog: "${var.catalog_name}" 
+      channel: CURRENT
+      continuous: true
+      development: true
+      schema: "${var.schema_name}"
